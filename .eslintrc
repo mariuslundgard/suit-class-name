@@ -1,0 +1,9 @@
+{
+  "extends": [
+    "ml"
+  ],
+  "env": {
+    "browser": true,
+    "node": true
+  }
+}
