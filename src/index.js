@@ -2,27 +2,27 @@ function isString (str) {
   return typeof str === 'string'
 }
 
-function renderElementName (elementName) {
-  return elementName ? `-${elementName}` : ''
+function renderElementName (element) {
+  return element ? `-${element}` : ''
 }
 
 function renderModifierName (modifierName) {
   return modifierName ? `--${modifierName}` : ''
 }
 
-function suitClassList (namespace, blockName, elementName, modifierNames, state, utils) {
+function suitClassList ({namespace, block, element, modifier, state, utils}) {
   const classList = []
   const prefix = (isString(namespace) && namespace.length) ? `${namespace}-` : ''
 
-  if (isString(modifierNames) && modifierNames.length) {
-    modifierNames.split(' ').forEach((modifierName) =>
+  if (isString(modifier) && modifier.length) {
+    modifier.split(' ').forEach((modifierName) =>
       classList.push(
-        `${prefix}${blockName}${renderElementName(elementName)}${renderModifierName(modifierName)}`
+        `${prefix}${block}${renderElementName(element)}${renderModifierName(modifierName)}`
       )
     )
   } else {
     classList.push(
-      `${prefix}${blockName}${renderElementName(elementName)}`
+      `${prefix}${block}${renderElementName(element)}`
     )
   }
 
@@ -47,6 +47,6 @@ export function utilClassName (utils) {
   return classList.join(' ')
 }
 
-export default function suitClassName () {
-  return suitClassList(...arguments).join(' ')
+export default function suitClassName (opts) {
+  return suitClassList(opts).join(' ')
 }
