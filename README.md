@@ -1,6 +1,6 @@
-# suit-class-name
+# suit-class-name [![Build Status](https://travis-ci.org/mariuslundgard/suit-class-name.svg?branch=master)](https://travis-ci.org/mariuslundgard/suit-class-name) [![Coverage Status](https://img.shields.io/coveralls/mariuslundgard/suit-class-name/master.svg?style=flat)](https://coveralls.io/github/mariuslundgard/suit-class-name?branch=master) [![npm version](https://img.shields.io/npm/v/suit-class-name.svg?style=flat)](https://www.npmjs.com/package/suit-class-name)
 
-Utility functions for creating [SUIT](https://github.com/suitcss/suit)-style class names.
+A utility library for creating [SUIT](https://github.com/suitcss/suit)-style class names.
 
 ## Installation
 
@@ -8,19 +8,19 @@ Utility functions for creating [SUIT](https://github.com/suitcss/suit)-style cla
 npm install suit-class-name
 ```
 
-## Documentation
+## Usage
 
 ```js
 import suitClassName from 'suit-class-name'
 
-console.log(suitClassName(null, 'Button', 'label'))
-// -> "Button-label"
+suitClassName('ns', 'Button', 'label')
+// -> "ns-Button-label"
 
-console.log(suitClassName(null, 'Button', null, 'dark'))
+suitClassName(null, 'Button', null, 'dark')
 // -> "Button--dark"
 
-console.log(suitClassName(null, 'Button', null, 'dark', {active: true}))
-// -> "Button--dark is-active"
+suitClassName(null, 'Button', null, 'dark', {active: true}, ['cf'])
+// -> "Button--dark is-active util-cf"
 ```
 
 See more examples in `test/`.
