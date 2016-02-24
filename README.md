@@ -13,14 +13,27 @@ npm install suit-class-name
 ```js
 import suitClassName from 'suit-class-name'
 
-suitClassName('ns', 'Button', 'label')
-// -> "ns-Button-label"
+suitClassName({
+  namespace: 'ns',
+  block: 'Button',
+  element: 'label'
+})
+// "ns-Button-label"
 
-suitClassName(null, 'Button', null, 'dark')
-// -> "Button--dark"
+suitClassName({
+  block: 'Button',
+  element: 'label',
+  modifier: 'dark'
+})
+// "Button-label--dark"
 
-suitClassName(null, 'Button', null, 'dark', {active: true}, ['cf'])
-// -> "Button--dark is-active util-cf"
+suitClassName({
+  block: 'Button',
+  modifier: 'dark',
+  state: {active: true},
+  utils: ['cf']
+})
+// "Button--dark is-active util-cf"
 ```
 
 See more examples in `test/`.
