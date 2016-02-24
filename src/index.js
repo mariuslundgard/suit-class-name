@@ -2,27 +2,46 @@ function isString (str) {
   return typeof str === 'string'
 }
 
-function renderElementName (element) {
-  return element ? `-${element}` : ''
+function renderPrefix (namespace) {
+  if (isString(namespace) && namespace.length) {
+    return `${namespace}-`
+  }
+
+  return ''
 }
 
-function renderModifierName (modifierName) {
-  return modifierName ? `--${modifierName}` : ''
+function renderElementName (element) {
+  if (element) {
+    return `-${element}`
+  }
+
+  return ''
 }
+
+function renderModifierName (modifier) {
+  if (modifier) {
+    return `--${modifier}`
+  }
+
+  return ''
+}
+
+/* eslint-disable complexity */
 
 function suitClassList ({namespace, block, element, modifier, state, utils}) {
   const classList = []
-  const prefix = (isString(namespace) && namespace.length) ? `${namespace}-` : ''
+  const p = renderPrefix(namespace)
+  const e = renderElementName(element)
 
   if (isString(modifier) && modifier.length) {
     modifier.split(' ').forEach((modifierName) =>
       classList.push(
-        `${prefix}${block}${renderElementName(element)}${renderModifierName(modifierName)}`
+        `${p}${block}${e}${renderModifierName(modifierName)}`
       )
     )
   } else {
     classList.push(
-      `${prefix}${block}${renderElementName(element)}`
+      `${p}${block}${e}`
     )
   }
 
@@ -40,6 +59,8 @@ function suitClassList ({namespace, block, element, modifier, state, utils}) {
 
   return classList
 }
+
+/* eslint-enable complexity */
 
 export function utilClassName (utils) {
   const classList = utils.map((util) => `u-${util}`)

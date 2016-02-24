@@ -7,7 +7,8 @@
     "test": "mocha --require babel-polyfill --require babel-register test/**/*.spec.js",
     "test-travis": "istanbul cover _mocha -- --require babel-polyfill --require babel-register -R spec ./test/**/*.spec.js",
     "coveralls": "npm run test-travis -- --report lcovonly && cat ./coverage/lcov.info | coveralls",
-    "build": "babel src --out-dir lib"
+    "build": "babel src --out-dir lib",
+    "lint": "eslint src"
   },
   "repository": {
     "type": "git",
@@ -21,14 +22,13 @@
   "homepage": "https://github.com/mariuslundgard/suit-class-name#readme",
   "devDependencies": {
     "babel-cli": "^6.5.1",
-    "babel-eslint": "4.1.6",
     "babel-polyfill": "6.5.0",
     "babel-preset-es2015": "6.5.0",
     "babel-register": "6.5.2",
     "chai": "^3.5.0",
     "coveralls": "^2.11.6",
-    "eslint": "1.10.3",
-    "eslint-config-ml": "0.0.4",
+    "eslint": "^2.2.0",
+    "eslint-config-ml": "^0.1.1",
     "istanbul": "1.0.0-alpha.2",
     "mocha": "^2.4.5",
     "mocha-lcov-reporter": "^1.2.0"
