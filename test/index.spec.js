@@ -1,3 +1,5 @@
+/* global describe, it */
+
 import suitClassName, {utilClassName} from '../src/'
 import {assert} from 'chai'
 
