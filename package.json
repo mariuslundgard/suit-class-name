@@ -5,6 +5,7 @@
   "main": "lib/index.js",
   "scripts": {
     "test": "mocha --require babel-polyfill --require babel-register test/**/*.spec.js",
+    "test-travis": "istanbul cover _mocha -- --require babel-polyfill --require babel-register -R spec ./test/**/*.spec.js",
     "build": "babel src --out-dir lib"
   },
   "repository": {
@@ -26,6 +27,7 @@
     "chai": "^3.5.0",
     "eslint": "1.10.3",
     "eslint-config-ml": "0.0.4",
+    "istanbul": "1.0.0-alpha.2",
     "mocha": "^2.4.5"
   }
 }
