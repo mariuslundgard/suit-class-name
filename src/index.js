@@ -28,33 +28,41 @@ function renderModifierName (modifier) {
 
 /* eslint-disable complexity */
 
-function suitClassList ({namespace, block, element, modifier, state, utils}) {
-  const classList = []
-  const p = renderPrefix(namespace)
-  const e = renderElementName(element)
+function suitClassList (params = {}) {
+  if (typeof params !== 'object') {
+    throw new Error('Unexpected non-object argument')
+  }
 
-  if (isString(modifier) && modifier.length) {
-    modifier.split(' ').forEach((modifierName) =>
+  if (!params.block) {
+    throw new Error('Missing `block` parameter')
+  }
+
+  const classList = []
+  const prefix = renderPrefix(params.namespace)
+  const element = renderElementName(params.element)
+
+  if (isString(params.modifier) && params.modifier.length) {
+    params.modifier.split(' ').forEach((modifier) =>
       classList.push(
-        `${p}${block}${e}${renderModifierName(modifierName)}`
+        `${prefix}${params.block}${element}${renderModifierName(modifier)}`
       )
     )
   } else {
     classList.push(
-      `${p}${block}${e}`
+      `${prefix}${params.block}${element}`
     )
   }
 
-  if (state) {
-    Object.keys(state)
-      .filter((key) => Boolean(state[key]))
+  if (params.state) {
+    Object.keys(params.state)
+      .filter((key) => Boolean(params.state[key]))
       .forEach((key) => {
-        classList.push(`is-${key}`)
+        classList.push(`${prefix}is-${key}`)
       })
   }
 
-  if (utils) {
-    classList.push(utilClassName(utils))
+  if (params.utils) {
+    classList.push(utilClassName(prefix, params.utils))
   }
 
   return classList
@@ -62,8 +70,8 @@ function suitClassList ({namespace, block, element, modifier, state, utils}) {
 
 /* eslint-enable complexity */
 
-export function utilClassName (utils) {
-  const classList = utils.map((util) => `u-${util}`)
+export function utilClassName (prefix, utils) {
+  const classList = utils.map((util) => `${prefix}util-${util}`)
 
   return classList.join(' ')
 }
