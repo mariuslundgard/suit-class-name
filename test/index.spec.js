@@ -76,4 +76,15 @@ describe('suit', () => {
 
     assert.equal(cn, 'p-Page-title--dark p-Page-title--small p-util-cf')
   })
+
+  it('should generate a `namespace-Block-element namespace-is-state` class name', () => {
+    const cn = suit({
+      namespace: 'p',
+      block: 'Page',
+      element: 'title',
+      state: {active: true}
+    })
+
+    assert.equal(cn, 'p-Page-title p-is-active')
+  })
 })
