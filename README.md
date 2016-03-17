@@ -11,29 +11,54 @@ npm install suit-class-name
 ## Usage
 
 ```js
-import suitClassName from 'suit-class-name'
+import suit from 'suit-class-name'
 
-suitClassName({
+suit({
   namespace: 'ns',
   block: 'Button',
   element: 'label'
 })
 // "ns-Button-label"
 
-suitClassName({
+suit({
   block: 'Button',
   element: 'label',
   modifier: 'dark'
 })
 // "Button-label--dark"
 
-suitClassName({
+suit({
   block: 'Button',
   modifier: 'dark',
   state: {active: true},
   utils: ['cf']
 })
 // "Button--dark is-active util-cf"
+```
+
+With React:
+
+```js
+import React from 'react'
+import suit from 'suit-class-name'
+
+function block (params) {
+  return suit(
+    Object.assign(params || {}, {block: 'Message'})
+  )
+}
+
+const Message = React.createClass({
+  render () {
+    return (
+      <div className={suit()}>
+        <div className={suit({element: 'title'})}>
+          Hello, world!
+        </div>
+      </div>
+    )
+  }
+}
 ```
 
 See more examples in `test/`.
