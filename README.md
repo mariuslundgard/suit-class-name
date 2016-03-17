@@ -51,8 +51,8 @@ function block (params) {
 const Message = React.createClass({
   render () {
     return (
-      <div className={suit()}>
-        <div className={suit({element: 'title'})}>
+      <div className={block()}>
+        <div className={block({element: 'title'})}>
           Hello, world!
         </div>
       </div>
